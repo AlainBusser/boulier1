@@ -24,7 +24,9 @@ dessine = function(abaque, boulier) {
   var i, k, l, m, ref, ref1, t;
   t = "";
   for (l = i = 0, ref = boulier.length; 0 <= ref ? i < ref : i > ref; l = 0 <= ref ? ++i : --i) {
-    t += "\n" + abaque[l] + " | ";
+    t += "\n";
+    if (abaque[l]<10) { t+= " "; }
+    t +=  abaque[l] + " | ";
     for (m = k = 0, ref1 = boulier[l]; 0 <= ref1 ? k < ref1 : k > ref1; m = 0 <= ref1 ? ++k : --k) {
       t += "●";
     }
