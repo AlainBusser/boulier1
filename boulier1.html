@@ -1,0 +1,87 @@
+<html lang="fr">
+  <head>
+    <title>boulier</title>
+    <meta charset="utf-8">
+    <style>
+#range { width: 640px; background-color: white; }    
+#boulier {
+	font-size: 160%;
+	width: 40em;
+	height: 36em;
+	color: blue;
+	border: none;
+}
+#compteur { color:red; }
+    </style>
+    <script>
+var L, c, dessine, n, premiers;
+
+L = [2];
+
+c = 1;
+
+dessine = function(abaque, boulier) {
+  var i, k, l, m, ref, ref1, t;
+  t = "";
+  for (l = i = 0, ref = boulier.length; 0 <= ref ? i < ref : i > ref; l = 0 <= ref ? ++i : --i) {
+    t += "\n" + abaque[l] + " | ";
+    for (m = k = 0, ref1 = boulier[l]; 0 <= ref1 ? k < ref1 : k > ref1; m = 0 <= ref1 ? ++k : --k) {
+      t += "●";
+    }
+  }
+  return t;
+};
+
+premiers = function(n) {
+  var I, K, a, i, j, k, len, len1, o, ref, results, z;
+  a = 2;
+  K = [0];
+  L = [2];
+  c = 1;
+  while (c < n - 1) {
+    a += 1;
+    I = (function() {
+      results = [];
+      for (var i = 0, ref = K.length; 0 <= ref ? i < ref : i > ref; 0 <= ref ? i++ : i--){ results.push(i); }
+      return results;
+    }).apply(this);
+    for (k = 0, len = I.length; k < len; k++) {
+      j = I[k];
+      K[j] += 1;
+    }
+    z = false;
+    for (o = 0, len1 = I.length; o < len1; o++) {
+      j = I[o];
+      if (K[j] === L[j]) {
+        K[j] = 0;
+      }
+      if (K[j] === 0) {
+        z = true;
+      }
+    }
+    if (!z) {
+      K.push(0);
+      L.push(a);
+    }
+    c += 1;
+  }
+  return [L, K];
+};
+
+    </script>
+  </head>
+  <body onLoad="dessin();">
+<input type="range" id="range" value="1" min="1" max="100" step="1" onChange="dessin()"></input>
+<br/>On a bouclé <span id="compteur"></span> fois.<br/>
+<textarea id="boulier" editable="false"></textarea><br/>
+<script>
+	dessin = function(){
+var n=document.getElementById("range").value;
+document.getElementById("compteur").innerHTML=n;
+document.getElementById("boulier").innerHTML = dessine(premiers(n)[0], premiers(n)[1]);
+		
+	}
+
+</script>
+  </body>
+</html>
