@@ -12,6 +12,13 @@
 	border: none;
 }
 #compteur { color:red; }
+h2 { color: darkRed; }
+ol { margin: 3em; 
+	padding: 2em;
+	border-radius: 0.8em;
+	background-color: rgba(200,160,0,0.3);
+	box-shadow: 0.5em 0.3em 0.2em rgba(100,100,100,0.3);
+} 
     </style>
     <script>
 var L, c, dessine, n, premiers;
@@ -73,6 +80,17 @@ premiers = function(n) {
     </script>
   </head>
   <body onLoad="dessin();">
+	  <h2>Principe de l'algorithme</h2>
+	  <p>Au début (compteur = 1), on a une seule case marquée "2", et vide. Ensuite:
+	  <ol>
+		  <li>On ajoute une bille (bleue) à chaque case ;</li>
+		  <li>On compare le nombre de billes dans chaque case, au numéro de la case ;</li>
+		  <li>On vide les cases ayant autant de billes que leur numéro ;</li>
+		  <li>Si on a vidé une case au moins, on ajoute une case au tableau, 
+		  portant le numéro du compteur, et initialement vide.</li>
+		  <li>On incrémente le compteur.</li>
+	  </ol>
+	  </p>
 <input type="range" id="range" value="1" min="1" max="100" step="1" onChange="dessin()"></input>
 <br/>On a bouclé <span id="compteur"></span> fois.<br/>
 <textarea id="boulier" editable="false"></textarea><br/>
