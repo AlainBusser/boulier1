@@ -10,6 +10,15 @@
 	height: 36em;
 	color: blue;
 	border: none;
+	text-shadow: 0.2em 0.1em 0.1em rgba(120,10,120,0.6);
+}
+#cptr {
+	font-size: 100%;
+	width: 100em;
+	height: 2em;
+	color: red;
+	border: none;
+	text-shadow: 0.2em 0.1em 0.1em rgba(120,10,120,0.6);
 }
 #compteur { color:red; }
 h2 { color: darkRed; }
@@ -86,12 +95,13 @@ premiers = function(n) {
 		  <li>On ajoute une bille (bleue) à chaque case ;</li>
 		  <li>On compare le nombre de billes dans chaque case, au numéro de la case ;</li>
 		  <li>On vide les cases ayant autant de billes que leur numéro ;</li>
-		  <li>Si on a vidé une case au moins, on ajoute une case au tableau, 
+		  <li>Si on n'a vidé aucune case, on ajoute une case au tableau, 
 		  portant le numéro du compteur, et initialement vide.</li>
 		  <li>On incrémente le compteur.</li>
 	  </ol>
 	  </p>
-<input type="range" id="range" value="1" min="1" max="100" step="1" onChange="dessin()"></input>
+<textarea id="cptr" editable="false"></textarea><br/>
+<input type="range" id="range" value="1" min="1" max="100" step="1" onInput="dessin()"></input>
 <br/>On a bouclé <span id="compteur"></span> fois.<br/>
 <textarea id="boulier" editable="false"></textarea><br/>
 <script>
@@ -99,6 +109,11 @@ premiers = function(n) {
 var n=document.getElementById("range").value;
 document.getElementById("compteur").innerHTML=n;
 document.getElementById("boulier").innerHTML = dessine(premiers(n)[0], premiers(n)[1]);
+    tc = "";
+    for(var i=1; i<=n; i++) {
+		tc += "●";
+	}
+	document.getElementById("cptr").innerHTML=tc;
 		
 	}
 
